@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-// import { Router } from '@angular/router'
+import { Router } from '@angular/router'
 import {UserService} from '../user.service';
 @Component({
   selector: 'app-search',
@@ -11,7 +11,7 @@ import {UserService} from '../user.service';
 export class SearchComponent implements OnInit {
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private userService:UserService
   ) { }
 
@@ -25,13 +25,13 @@ export class SearchComponent implements OnInit {
       map(term =>  this.userService.searchUser(term))
     )
 
-    // onSearchFocus(){
-    //   this.router.navigateByUrl('');
-    // }
+    onSearchFocus(){
+      this.router.navigateByUrl('');
+    }
 
-    // clickSearch(){
-    //   this.router.navigateByUrl('/');
-    // }
+    clickSearch(){
+      this.router.navigateByUrl('/');
+    }
     
     clearPage(){
       this.userService.clear()

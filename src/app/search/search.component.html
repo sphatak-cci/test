@@ -10,9 +10,33 @@
 <div class="container-max-width">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <form class="form-inline" action="/action_page.php">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="model" (keyup)="onSearchFocus()" #searchInput>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search"  [ngbTypeahead]="search"  #searchInput>
             <button class="btn btn-success" type="submit" (click)="clickSearch()">Search</button>
         </form>
     </nav>
 </div>
 
+
+<div class="container">
+  
+    <div *ngIf="userService.users">
+    
+        <div class="row">
+            <div class="col-md-4" *ngFor="let user of userService.users">
+              <div class="card mb-4 shadow-sm">
+                <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                <img src="{{user.avatar_url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-text text-secondary text-center">{{user.login}}</h5>
+                  <div class="text-center">
+                    
+                     <a routerLink="/user/{{user.login}}" > <button type="button" class="btn btn-lg btn-outline-secondary align-center" (click)=" clearPage()">View Profile</button></a>
+                </div>
+         
+                </div>
+              </div>
+            </div>
+        </div>
+    
+    </div>
+    </div>
